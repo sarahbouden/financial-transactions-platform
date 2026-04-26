@@ -1,0 +1,12 @@
+fintech_dw:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: crucial-module-493808-q9
+      dataset: fintech_dw
+      keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS') }}"
+      location: EU
+      threads: 4
+      timeout_seconds: 300

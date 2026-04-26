@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: fct_transactions
+    description: "Table de faits principale — toutes les transactions enrichies"
+    columns:
+      - name: transaction_id
+        tests:
+          - unique
+          - not_null
+      - name: amount
+        tests:
+          - not_null
+      - name: pipeline_latency_seconds
+        description: "Latence bout-en-bout en secondes"
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 300
+              inclusive: true
+
+  - name: dim_merchants
+    description: "Dimension marchands avec métriques agrégées et segment risque"
+    columns:
+      - name: merchant_id
+        tests:
+          - unique
+          - not_null
+      - name: risk_segment
+        tests:
+          - accepted_values:
+              values: ['low_risk', 'medium_risk', 'high_risk']
+
+  - name: dim_transaction_types
+    description: "Dimension types de transactions avec statistiques globales"
+    columns:
+      - name: transaction_type
+        tests:
+          - not_null

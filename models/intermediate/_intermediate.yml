@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: int_transactions_daily
+    description: "Agrégats quotidiens des transactions par type et statut"
+    columns:
+      - name: transaction_date
+        tests:
+          - not_null
+      - name: transaction_count
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              inclusive: true
+
+  - name: int_merchant_stats
+    description: "Statistiques agrégées par marchand"
+    columns:
+      - name: merchant_id
+        tests:
+          - not_null
+          - unique
+      - name: fraud_rate
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 1
+              inclusive: true
+
+  - name: int_fraud_signals
+    description: "Signaux de fraude par catégorie de marchand, type de carte et device"
+    columns:
+      - name: fraud_rate
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 1
+              inclusive: true

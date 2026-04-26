@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw
+    database: crucial-module-493808-q9
+    schema: fintech_dw
+    tables:
+      - name: raw_transactions
+        description: "Transactions brutes ingérées via Pub/Sub → BigQuery Subscription"
+        columns:
+          - name: data
+            description: "Payload JSON complet de la transaction"
+          - name: publish_time
+            description: "Timestamp d'arrivée dans Pub/Sub"
+          - name: message_id
+            description: "ID unique du message Pub/Sub"
