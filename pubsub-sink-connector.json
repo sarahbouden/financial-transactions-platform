@@ -1,0 +1,13 @@
+{
+  "name": "pubsub-sink-connector",
+  "config": {
+    "connector.class": "com.google.pubsub.kafka.sink.CloudPubSubSinkConnector",
+    "tasks.max": "1",
+    "topics": "raw_transactions",
+    "cps.project": "crucial-module-493808-q9",
+    "cps.topic": "raw-transactions",
+    "gcp.credentials.file.path": "/gcp/service-account.json",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter"
+  }
+}

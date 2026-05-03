@@ -1,0 +1,20 @@
+# Secrets
+.env
+gcp/service-account.json
+
+# dbt
+dbt/fintech_dw/target/
+dbt/fintech_dw/dbt_packages/
+dbt/fintech_dw/logs/
+
+# Airflow
+airflow/logs/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Docker
+*.override.yml

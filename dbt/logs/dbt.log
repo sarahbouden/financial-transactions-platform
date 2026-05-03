@@ -1,0 +1,60 @@
+[0m11:36:32.481138 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023D38309BE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023D33EEB4D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023D3A4AFB10>]}
+
+
+============================== 11:36:32.487897 | 78937653-da86-40d1-aa68-90a0842fdd30 ==============================
+[0m11:36:32.487897 [info ] [MainThread]: Running with dbt=1.11.8
+[0m11:36:32.489178 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\USERµ\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'use_colors': 'True', 'invocation_command': 'dbt deps', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'log_path': 'C:\\Users\\USERµ\\Projects\\financial-transactions-platform\\dbt\\logs'}
+[0m11:36:32.863920 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '78937653-da86-40d1-aa68-90a0842fdd30', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023D38820050>]}
+[0m11:36:32.886792 [debug] [MainThread]: Set downloads directory='C:\Users\USER~1\AppData\Local\Temp\dbt-downloads-zi7ms5ep'
+[0m11:36:32.887440 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m11:36:44.163131 [debug] [MainThread]: External call exception: HTTPSConnectionPool(host='hub.getdbt.com', port=443): Max retries exceeded with url: /api/v1/index.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000023D3A808AD0>: Failed to resolve 'hub.getdbt.com' ([Errno 11001] getaddrinfo failed)"))
+[0m11:36:44.163898 [debug] [MainThread]: Retrying external call. Attempt: 0 Max attempts: 5
+[0m11:36:45.164650 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m11:39:35.161350 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m11:39:35.166108 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json
+[0m11:42:46.487270 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json 200
+[0m11:42:46.507714 [info ] [MainThread]: Updating lock file in file path: C:\Users\USERµ\Projects\financial-transactions-platform\dbt/package-lock.yml
+[0m11:42:46.512600 [debug] [MainThread]: Set downloads directory='C:\Users\USER~1\AppData\Local\Temp\dbt-downloads-f3vfutqm'
+[0m11:42:46.516520 [info ] [MainThread]: Installing dbt-labs/dbt_utils
+[0m11:42:58.972411 [info ] [MainThread]: Installed from version 1.3.3
+[0m11:42:58.973305 [info ] [MainThread]: Up to date!
+[0m11:42:58.974104 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': '78937653-da86-40d1-aa68-90a0842fdd30', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023D3A5AB350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023D3A5ABF00>]}
+[0m11:42:58.976333 [debug] [MainThread]: Command `dbt deps` succeeded at 11:42:58.976151 after 386.73 seconds
+[0m11:42:58.976785 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023D3A59B850>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023D3A7A5A90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023D3A7A6030>]}
+[0m11:42:58.977245 [debug] [MainThread]: Flushing usage events
+[0m11:43:00.850544 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m11:44:13.185854 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001832DB59BE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001832975B4D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001832FCFFB10>]}
+
+
+============================== 11:44:13.191712 | 69600bcb-e614-44b9-a185-879a3f994cdb ==============================
+[0m11:44:13.191712 [info ] [MainThread]: Running with dbt=1.11.8
+[0m11:44:13.192909 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\USERµ\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'use_colors': 'True', 'invocation_command': 'dbt debug', 'use_experimental_parser': 'False', 'log_path': 'C:\\Users\\USERµ\\Projects\\financial-transactions-platform\\dbt\\logs'}
+[0m11:44:13.209490 [info ] [MainThread]: dbt version: 1.11.8
+[0m11:44:13.210288 [info ] [MainThread]: python version: 3.13.7
+[0m11:44:13.210925 [info ] [MainThread]: python path: C:\Program Files\Python313\python.exe
+[0m11:44:13.211547 [info ] [MainThread]: os info: Windows-11-10.0.26100-SP0
+[0m11:44:13.212234 [info ] [MainThread]: Using profiles dir at C:\Users\USERµ\.dbt
+[0m11:44:13.212844 [info ] [MainThread]: Using profiles.yml file at C:\Users\USERµ\.dbt\profiles.yml
+[0m11:44:13.213449 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\USERµ\Projects\financial-transactions-platform\dbt\dbt_project.yml
+[0m11:44:13.383157 [info ] [MainThread]: Configuration:
+[0m11:44:13.384197 [info ] [MainThread]:   profiles.yml file [[31mERROR not found[0m]
+[0m11:44:13.384856 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m11:44:13.385511 [info ] [MainThread]: Required dependencies:
+[0m11:44:13.386086 [debug] [MainThread]: Executing "git --help"
+[0m11:44:13.499593 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   history    EXPERIMENTAL: Rewrite history\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Set `HEAD` or the index to a known state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m11:44:13.500318 [debug] [MainThread]: STDERR: "b''"
+[0m11:44:13.500759 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m11:44:13.501556 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m11:44:13.502348 [info ] [MainThread]: [31m1 check failed:[0m
+[0m11:44:13.503124 [info ] [MainThread]: dbt looked for a profiles.yml file in C:\Users\USERµ\.dbt\profiles.yml, but did
+not find one. For more information on configuring your profile, consult the
+documentation:
+
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m11:44:13.504518 [debug] [MainThread]: Command `dbt debug` failed at 11:44:13.504321 after 0.55 seconds
+[0m11:44:13.505045 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001832DFD56E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000183300444D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001832FE62CF0>]}
+[0m11:44:13.505807 [debug] [MainThread]: Flushing usage events
+[0m11:44:16.955949 [debug] [MainThread]: An error was encountered while trying to flush usage events

@@ -1,0 +1,25 @@
+name: 'fintech_dw'
+version: '1.0.0'
+config-version: 2
+
+profile: 'fintech_dw'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+analysis-paths: ["analyses"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  fintech_dw:
+    staging:
+      +schema: staging           # → fintech_dw_staging dataset
+      +materialized: view        # staging = vues, pas de coût stockage
+    intermediate:
+      +schema: intermediate      # → fintech_dw_intermediate dataset
+      +materialized: table       # intermediate = tables matérialisées
+    marts:
+      +schema: marts             # → fintech_dw_marts dataset
+      +materialized: table

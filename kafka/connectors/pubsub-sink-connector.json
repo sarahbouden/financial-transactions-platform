@@ -1,0 +1,14 @@
+{
+  "name": "pubsub-sink-raw-transactions",
+  "config": {
+    "connector.class": "io.confluent.connect.gcp.pubsub.PubSubSinkConnector",
+    "tasks.max": "1",
+    "topics": "raw_transactions",
+    "gcp.pubsub.project.id": "${GCP_PROJECT_ID}",
+    "gcp.pubsub.topic.id": "${PUBSUB_TOPIC}",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
+    "confluent.topic.bootstrap.servers": "kafka:29092",
+    "confluent.topic.replication.factor": "1"
+  }
+}

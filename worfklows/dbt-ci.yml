@@ -1,0 +1,65 @@
+name: dbt CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'dbt/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'dbt/**'
+
+jobs:
+  dbt-check:
+    name: dbt compile + test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dbt-bigquery
+        run: pip install dbt-bigquery==1.11.1
+
+      - name: Create GCP service account key
+        # Le contenu du JSON est stocké comme secret GitHub
+        run: |
+          echo '${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}' > /tmp/service-account.json
+
+      - name: Create dbt profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml << EOF
+          fintech_dw:
+            target: ci
+            outputs:
+              ci:
+                type: bigquery
+                method: service-account
+                project: crucial-module-493808-q9
+                dataset: fintech_dw
+                keyfile: /tmp/service-account.json
+                location: EU
+                threads: 4
+                timeout_seconds: 300
+          EOF
+
+      - name: dbt deps
+        working-directory: dbt/fintech_dw
+        run: dbt deps
+
+      - name: dbt compile
+        working-directory: dbt/fintech_dw
+        run: dbt compile
+
+      - name: dbt test
+        working-directory: dbt/fintech_dw
+        run: dbt test
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/service-account.json

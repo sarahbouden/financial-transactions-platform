@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: stg_transactions
+    description: "Transactions nettoyées, typées et dédupliquées"
+    columns:
+      - name: transaction_id
+        description: "UUID unique de la transaction"
+        tests:
+          - unique
+          - not_null
+
+      - name: amount
+        description: "Montant de la transaction (négatif pour refunds/withdrawals)"
+        tests:
+          - not_null
+
+      - name: currency
+        description: "Code devise ISO 4217"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['EUR', 'USD', 'GBP', 'CHF']
+
+      - name: transaction_type
+        description: "Type de transaction"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['purchase', 'refund', 'transfer', 'withdrawal', 'deposit']
+
+      - name: status
+        description: "Statut de la transaction"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['completed', 'pending', 'failed', 'reversed']
+
+      - name: card_type
+        tests:
+          - accepted_values:
+              values: ['VISA', 'MASTERCARD', 'AMEX']
+
+      - name: device_type
+        tests:
+          - accepted_values:
+              values: ['mobile', 'desktop', 'tablet']
+
+      - name: is_fraud
+        description: "Flag fraude simulé"
+        tests:
+          - not_null
+
+      - name: transaction_timestamp
+        description: "Timestamp UTC de la transaction"
+        tests:
+          - not_null
