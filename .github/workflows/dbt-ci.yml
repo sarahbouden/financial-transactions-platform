@@ -1,0 +1,45 @@
+# .github/workflows/dbt-ci.yml
+name: dbt CI
+
+on:
+  pull_request:
+    paths:
+      - 'dbt/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'dbt/**'
+
+jobs:
+  dbt-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dbt
+        run: pip install dbt-bigquery==1.11.8
+
+      - name: Setup GCP credentials
+        run: |
+          echo '${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}' > /tmp/service-account.json
+          echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/service-account.json" >> $GITHUB_ENV
+
+      - name: dbt deps
+        working-directory: dbt/fintech_dw
+        run: dbt deps
+
+      - name: dbt compile
+        working-directory: dbt/fintech_dw
+        run: dbt compile --profiles-dir .
+
+      - name: dbt test
+        working-directory: dbt/fintech_dw
+        run: dbt test --profiles-dir . --no-partial-parse
