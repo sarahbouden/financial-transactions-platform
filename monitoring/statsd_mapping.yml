@@ -1,0 +1,32 @@
+mappings:
+  - match: "airflow.dag_processing.total_parse_time"
+    name: "airflow_dag_processing_total_parse_time"
+    labels:
+      job: "airflow"
+
+  - match: "airflow.ti.failures"
+    name: "airflow_ti_failures_total"
+    labels:
+      job: "airflow"
+
+  - match: "airflow.ti.successes"
+    name: "airflow_ti_successes_total"
+    labels:
+      job: "airflow"
+
+  - match: "airflow.dag_run.duration.success.*"
+    name: "airflow_dag_run_duration_success"
+    labels:
+      job: "airflow"
+      dag_id: "$1"
+
+  - match: "airflow.dag_run.last_run.*"
+    name: "airflow_dag_run_last_run_seconds"
+    labels:
+      job: "airflow"
+      dag_id: "$1"
+
+  - match: "airflow.*"
+    name: "airflow_${1}"
+    labels:
+      job: "airflow"
