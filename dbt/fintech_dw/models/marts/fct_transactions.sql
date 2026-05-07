@@ -46,3 +46,4 @@ select
 from stg
 left join merchant_stats ms
     on stg.merchant_id = ms.merchant_id
+-- ci verification

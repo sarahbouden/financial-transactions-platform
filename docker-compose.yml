@@ -15,6 +15,10 @@ x-airflow-common: &airflow-common
     GCP_PROJECT_ID: crucial-module-493808-q9
     DBT_PROJECT_DIR: /opt/airflow/dbt/fintech_dw
     DBT_PROFILES_DIR: /opt/airflow/dbt/fintech_dw
+    AIRFLOW__METRICS__STATSD_ON: 'true'
+    AIRFLOW__METRICS__STATSD_HOST: statsd-exporter
+    AIRFLOW__METRICS__STATSD_PORT: '8125'
+    AIRFLOW__METRICS__STATSD_PREFIX: 'airflow'
   volumes:
     - ./airflow/dags:/opt/airflow/dags
     - ./airflow/logs:/opt/airflow/logs
@@ -156,8 +160,59 @@ services:
     command: scheduler
     restart: unless-stopped
 
+# --- StatsD Exporter -------------------------------------------
+  statsd-exporter:
+    image: prom/statsd-exporter:v0.26.1
+    container_name: statsd-exporter
+    ports:
+      - "9102:9102"
+      - "8125:8125/udp"
+    volumes:
+      - ./monitoring/statsd_mapping.yml:/etc/statsd_mapping.yml:ro
+    command:
+      - '--statsd.mapping-config=/etc/statsd_mapping.yml'
+      - '--statsd.listen-udp=:8125'
+      - '--web.listen-address=:9102'
+    restart: unless-stopped
+
+  # --- Prometheus ------------------------------------------------
+  prometheus:
+    image: prom/prometheus:v2.51.2
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.retention.time=7d'
+    restart: unless-stopped
+    depends_on:
+      - statsd-exporter
+
+  # --- Grafana ---------------------------------------------------
+  grafana:
+    image: grafana/grafana:10.4.2
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_USERS_ALLOW_SIGN_UP: 'false'
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana_data:/var/lib/grafana
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+
 volumes:
   postgres_data:
+  prometheus_data:
+  grafana_data:
 
 networks:
   default:

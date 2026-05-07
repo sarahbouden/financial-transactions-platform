@@ -1,0 +1,85 @@
+{
+  "title": "Airflow — Financial Transactions Platform",
+  "uid": "fintech-airflow",
+  "schemaVersion": 38,
+  "version": 2,
+  "refresh": "30s",
+  "time": { "from": "now-24h", "to": "now" },
+  "panels": [
+    {
+      "id": 1,
+      "title": "DAG Run Duration (seconds)",
+      "type": "timeseries",
+      "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "airflow_dag_processing_total_parse_time",
+          "legendFormat": "parse_time"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "color": { "mode": "palette-classic" }
+        }
+      }
+    },
+    {
+    "id": 2,
+    "title": "Task Failures (last 24h)",
+    "type": "stat",
+    "gridPos": { "x": 12, "y": 0, "w": 6, "h": 8 },
+    "datasource": "Prometheus",
+    "targets": [
+        {
+        "expr": "airflow_ti_start - on(instance) airflow_ti_successes",
+        "legendFormat": "Failures"
+        }
+    ],
+    "fieldConfig": {
+        "defaults": {
+        "unit": "short",
+        "thresholds": {
+            "mode": "absolute",
+            "steps": [
+            { "color": "green", "value": null },
+            { "color": "orange", "value": 1 },
+            { "color": "red", "value": 5 }
+            ]
+        },
+        "color": { "mode": "thresholds" }
+        }
+    },
+    "options": { "reduceOptions": { "calcs": ["lastNotNull"] } }
+    },
+    {
+      "id": 3,
+      "title": "Task Successes Total",
+      "type": "stat",
+      "gridPos": { "x": 18, "y": 0, "w": 6, "h": 8 },
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "airflow_ti_successes",
+          "legendFormat": "Successes"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "orange", "value": 1 },
+              { "color": "green", "value": 5 }
+            ]
+          },
+          "color": { "mode": "thresholds" }
+        }
+      },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] } }
+    }
+  ]
+}
