@@ -174,7 +174,7 @@ raw.raw_transactions
 
 ### dbt Lineage Graph
 
-![dbt Lineage](docs/screenshots/lineage_graph.png)
+![dbt Lineage](docs/screenshots/Lineage graph.png)
 
 ### Tests de data quality
 
@@ -218,7 +218,7 @@ dbt_test_full >> check_row_counts >> dbt_docs_generate
 | Task Failures (last 24h) | `airflow_ti_start - on(instance) airflow_ti_successes` | Stat |
 | Task Successes Total | `airflow_ti_successes` | Stat |
 
-![Grafana Dashboard](docs/screenshots/grafana_dashboard.png)
+![Grafana Dashboard](docs/screenshots/dashboard.png)
 
 ---
 
