@@ -174,7 +174,7 @@ raw.raw_transactions
 
 ### dbt Lineage Graph
 
-![dbt Lineage](docs/screenshots/Lineage graph.png)
+![dbt Lineage](docs/screenshots/lineage_graph.png)
 
 ### Tests de data quality
 
